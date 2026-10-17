@@ -1,0 +1,1735 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MAKANJUỌLÁ | Digital Reality & Tech Solutions</title>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* --- ROOT VARIABLES --- */
+        :root {
+            --primary-color: #0f172a;
+            --accent-color: #2563eb;
+            --accent-hover: #1d4ed8;
+            --whatsapp-green: #25d366;
+            --whatsapp-hover: #1ebe5d;
+            --text-dark: #1e293b;
+            --text-light: #64748b;
+            --bg-light: #f8fafc;
+            --card-bg: #ffffff;
+            --price-tag: #059669;
+        }
+
+        /* --- GLOBAL RESET & SECURITY (ANTI-COPY / ANTI-SELECT) --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            scroll-behavior: smooth;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        /* Allow typing inside form inputs */
+        input, textarea, select {
+            -webkit-user-select: text;
+            -moz-user-select: text;
+            -ms-user-select: text;
+            user-select: text;
+        }
+
+        body {
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* --- SCREEN RECORD / SHARING PRIVACY SHIELD --- */
+        #privacyShieldOverlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: #0f172a;
+            color: white;
+            z-index: 99999;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+
+        /* --- HEADER & NAV --- */
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 16px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .brand-logo {
+            font-size: 1.3rem;
+            font-weight: 800;
+            letter-spacing: 1px;
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .brand-logo span {
+            color: #60a5fa;
+        }
+
+        .nav-cta {
+            background-color: var(--whatsapp-green);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: transform 0.2s ease;
+        }
+
+        .nav-cta:hover {
+            transform: scale(1.05);
+        }
+
+        /* --- DASHBOARD SUB-NAVBAR --- */
+        .dashboard-nav {
+            background: #1e293b;
+            border-bottom: 1px solid #334155;
+            position: sticky;
+            top: 65px;
+            z-index: 990;
+            overflow-x: auto;
+            white-space: nowrap;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .dashboard-nav a {
+            color: #cbd5e1;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.2s;
+        }
+
+        .dashboard-nav a:hover {
+            background: var(--accent-color);
+            color: white;
+        }
+
+        /* --- DEVELOPER PROFILE & BACKGROUND TOP SECTION (DYNAMIC) --- */
+        .profile-top-banner {
+            background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+            color: #f8fafc;
+            padding: 30px 20px;
+            border-bottom: 4px solid var(--accent-color);
+        }
+
+        .profile-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+
+        @media (min-width: 768px) {
+            .profile-container {
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+            }
+        }
+
+        .profile-img-box {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 4px solid #60a5fa;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+            flex-shrink: 0;
+            background: #334155;
+        }
+
+        .profile-img-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .profile-info {
+            flex-grow: 1;
+            text-align: center;
+        }
+
+        @media (min-width: 768px) {
+            .profile-info {
+                text-align: left;
+            }
+        }
+
+        .profile-info h3 {
+            font-size: 1.3rem;
+            color: #60a5fa;
+            margin-bottom: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        @media (min-width: 768px) {
+            .profile-info h3 {
+                justify-content: flex-start;
+            }
+        }
+
+        .profile-info p {
+            font-size: 0.9rem;
+            color: #cbd5e1;
+            margin-bottom: 4px;
+        }
+
+        .profile-badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 10px;
+            justify-content: center;
+        }
+
+        @media (min-width: 768px) {
+            .profile-badges {
+                justify-content: flex-start;
+            }
+        }
+
+        .p-badge {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: #e2e8f0;
+        }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            color: white;
+            padding: 50px 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 10;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background-color: rgba(37, 99, 235, 0.2);
+            color: #60a5fa;
+            border: 1px solid rgba(96, 165, 250, 0.3);
+            padding: 6px 16px;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 {
+            font-size: 2.1rem;
+            font-weight: 800;
+            line-height: 1.25;
+            margin-bottom: 16px;
+        }
+
+        .hero h1 span {
+            background: linear-gradient(90deg, #60a5fa, #38bdf8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: 1rem;
+            color: #94a3b8;
+            margin-bottom: 28px;
+            max-width: 650px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-btns {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            justify-content: center;
+            align-items: center;
+        }
+
+        @media (min-width: 600px) {
+            .hero h1 { font-size: 2.8rem; }
+            .hero-btns { flex-direction: row; }
+        }
+
+        .btn-primary {
+            background-color: var(--accent-color);
+            color: white;
+            padding: 12px 28px;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: background 0.3s ease;
+            width: 100%;
+            max-width: 280px;
+            justify-content: center;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--accent-hover);
+        }
+
+        .btn-whatsapp {
+            background-color: var(--whatsapp-green);
+            color: white;
+            padding: 12px 28px;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            width: 100%;
+            max-width: 280px;
+            justify-content: center;
+        }
+
+        /* --- LIVE CUSTOMER & VISITOR ACTIVITY TICKER --- */
+        .live-activity-ticker {
+            background: #1e293b;
+            color: #cbd5e1;
+            padding: 12px 20px;
+            font-size: 0.85rem;
+            border-bottom: 1px solid #334155;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            text-align: center;
+        }
+
+        .live-dot {
+            width: 9px;
+            height: 9px;
+            background-color: #22c55e;
+            border-radius: 50%;
+            box-shadow: 0 0 8px #22c55e;
+            animation: pulse-dot 1.5s infinite;
+        }
+
+        @keyframes pulse-dot {
+            0% { transform: scale(0.95); opacity: 0.8; }
+            50% { transform: scale(1.3); opacity: 1; }
+            100% { transform: scale(0.95); opacity: 0.8; }
+        }
+
+        /* --- PUBLIC COMMUNITY & CUSTOMERS FEED SECTION --- */
+        .community-feed-section {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+
+        .community-card {
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+        }
+
+        .community-card h3 {
+            font-size: 1.1rem;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .community-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .community-badge-item {
+            background: #f1f5f9;
+            border: 1px solid #cbd5e1;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            color: #334155;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .promo-badge-item {
+            background: #ecfdf5;
+            border: 1px solid #a7f3d0;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            color: #065f46;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        /* --- INTERACTIVE WHATSAPP ORDER / INQUIRY BOX --- */
+        .order-section {
+            max-width: 800px;
+            margin: 20px auto 40px auto;
+            padding: 0 20px;
+            position: relative;
+            z-index: 20;
+        }
+
+        .order-card {
+            background: var(--card-bg);
+            border-radius: 14px;
+            padding: 28px 24px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            border: 1px solid #e2e8f0;
+        }
+
+        .order-card h3 {
+            font-size: 1.25rem;
+            color: var(--primary-color);
+            margin-bottom: 6px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .order-card p {
+            font-size: 0.88rem;
+            color: var(--text-light);
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 16px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 6px;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 11px 14px;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            outline: none;
+            background-color: #f8fafc;
+            transition: border-color 0.2s;
+        }
+
+        .form-control:focus {
+            border-color: var(--accent-color);
+            background-color: #fff;
+        }
+
+        textarea.form-control {
+            resize: vertical;
+            min-height: 90px;
+        }
+
+        .whatsapp-send-btn {
+            width: 100%;
+            background-color: var(--whatsapp-green);
+            color: white;
+            border: none;
+            padding: 13px;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: background 0.2s;
+            box-shadow: 0 4px 12px rgba(37, 211, 102, 0.25);
+        }
+
+        .whatsapp-send-btn:hover {
+            background-color: var(--whatsapp-hover);
+        }
+
+        /* --- SERVICES SECTION --- */
+        .services-container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .section-header h2 {
+            font-size: 1.8rem;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        .section-header p {
+            color: var(--text-light);
+            font-size: 0.95rem;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .service-card {
+            background-color: var(--card-bg);
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 24px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.06);
+            border-color: #cbd5e1;
+        }
+
+        /* --- SERVICE IMAGE STYLING --- */
+        .service-img-box {
+            width: 100%;
+            height: 150px;
+            border-radius: 8px;
+            overflow: hidden;
+            margin-bottom: 14px;
+            background: #f1f5f9;
+            border: 1px solid #e2e8f0;
+        }
+
+        .service-img-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .service-header-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 12px;
+        }
+
+        .service-icon {
+            width: 44px;
+            height: 44px;
+            background-color: rgba(37, 99, 235, 0.1);
+            color: var(--accent-color);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+
+        .price-tag {
+            background-color: #ecfdf5;
+            color: var(--price-tag);
+            border: 1px solid #a7f3d0;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 700;
+        }
+
+        .service-card h3 {
+            font-size: 1.1rem;
+            color: var(--primary-color);
+            margin-bottom: 6px;
+        }
+
+        .service-card p {
+            font-size: 0.85rem;
+            color: var(--text-light);
+            margin-bottom: 16px;
+        }
+
+        /* --- DETAILS MODAL BUTTON --- */
+        .details-modal-btn {
+            background: #f1f5f9;
+            color: #1e293b;
+            border: 1px solid #cbd5e1;
+            padding: 8px 12px;
+            border-radius: 8px;
+            font-size: 0.82rem;
+            font-weight: 700;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 12px;
+            width: 100%;
+            transition: background 0.2s, color 0.2s;
+        }
+
+        .details-modal-btn:hover {
+            background: var(--accent-color);
+            color: white;
+            border-color: var(--accent-color);
+        }
+
+        .service-link {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--accent-color);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            margin-top: auto;
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 0;
+            text-align: left;
+        }
+
+        .service-link:hover {
+            color: var(--accent-hover);
+        }
+
+        /* --- SERVICE DETAILS POPUP MODAL STYLES --- */
+        .service-details-modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.7);
+            z-index: 2500;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .service-details-content {
+            background: white;
+            color: var(--text-dark);
+            width: 100%;
+            max-width: 500px;
+            border-radius: 14px;
+            padding: 24px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            position: relative;
+        }
+
+        .service-details-content h3 {
+            color: var(--primary-color);
+            font-size: 1.3rem;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .service-details-content ul {
+            padding-left: 18px;
+            margin: 15px 0;
+        }
+
+        .service-details-content li {
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+            color: #475569;
+        }
+
+        /* --- ADMIN SECRET PANEL STYLES --- */
+        .admin-trigger-bar {
+            text-align: center;
+            padding: 20px;
+            background: #1e293b;
+            color: #94a3b8;
+            font-size: 0.85rem;
+            border-top: 1px solid #334155;
+        }
+
+        .admin-trigger-btn {
+            background: none;
+            border: 1px dashed #64748b;
+            color: #cbd5e1;
+            padding: 6px 14px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            transition: all 0.2s;
+        }
+
+        .admin-trigger-btn:hover {
+            background: rgba(255,255,255,0.05);
+            color: white;
+            border-color: #60a5fa;
+        }
+
+        /* Modal Overlay */
+        .admin-modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.7);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .admin-modal-content {
+            background: white;
+            color: var(--text-dark);
+            width: 100%;
+            max-width: 650px;
+            border-radius: 12px;
+            padding: 24px;
+            max-height: 85vh;
+            overflow-y: auto;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+
+        .admin-modal-content h3 {
+            margin-bottom: 14px;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .close-modal {
+            background: none;
+            border: none;
+            font-size: 1.2rem;
+            cursor: pointer;
+            color: var(--text-light);
+        }
+
+        .admin-item-row {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 12px;
+            margin-bottom: 12px;
+        }
+
+        .admin-item-row input, .admin-item-row textarea {
+            margin-bottom: 8px;
+        }
+
+        .admin-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 14px;
+        }
+
+        /* --- CONTACT BANNER --- */
+        .contact-banner {
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: 16px;
+            padding: 40px 24px;
+            text-align: center;
+            margin: 50px 20px;
+            max-width: 1160px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .contact-banner h2 {
+            font-size: 1.6rem;
+            margin-bottom: 12px;
+        }
+
+        .contact-banner p {
+            color: #94a3b8;
+            margin-bottom: 24px;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .info-chip {
+            background-color: rgba(255,255,255,0.08);
+            padding: 10px 18px;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #e2e8f0;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background-color: #0b0f19;
+            color: #64748b;
+            text-align: center;
+            padding: 24px 20px;
+            font-size: 0.85rem;
+            border-top: 1px solid #1e293b;
+        }
+
+        footer strong {
+            color: #f8fafc;
+        }
+    </style>
+</head>
+<body id="home">
+
+    <!-- PRIVACY SHIELD FOR SCREEN RECORD / SHARING PROTECTION -->
+    <div id="privacyShieldOverlay">
+        🔒 Security Notice: Screen recording or content sharing is restricted on this protected platform.
+    </div>
+
+    <!-- TOP NAVBAR -->
+    <header>
+        <div class="nav-container">
+            <a href="#" class="brand-logo">
+                <i class="fa-solid fa-code"></i> MAKANJUỌLÁ
+            </a>
+            <a href="https://wa.me/2349063074090?text=Hello%20MAKANJU%E1%BB%8CL%C3%81,%20I%20would%20like%20to%20inquire%20about%20your%20tech%20services!" class="nav-cta" target="_blank">
+                <i class="fa-brands fa-whatsapp"></i> Get In Touch
+            </a>
+        </div>
+    </header>
+
+    <!-- DASHBOARD SUB-NAVBAR -->
+    <nav class="dashboard-nav">
+        <a href="#home"><i class="fa-solid fa-house"></i> Home</a>
+        <a href="#services"><i class="fa-solid fa-list-check"></i> What It Entails</a>
+        <a href="#services"><i class="fa-solid fa-tags"></i> Price</a>
+        <a href="#inquiry"><i class="fa-solid fa-cart-shopping"></i> Order</a>
+        <a href="https://wa.me/2349063074090?text=Hello%20MAKANJU%E1%BB%8CL%C3%81,%20I%20want%20to%20message%20the%20site%20owner!" target="_blank"><i class="fa-brands fa-whatsapp"></i> Message Site Owner</a>
+    </nav>
+
+    <!-- LIVE VISITOR & CUSTOMER ACTIVITY TICKER -->
+    <div class="live-activity-ticker">
+        <div class="live-dot"></div>
+        <span id="liveTickerText">Loading recent site visitors & customer activities...</span>
+    </div>
+
+    <!-- DEVELOPER PROFILE & BACKGROUND TOP SECTION (DYNAMIC) -->
+    <section class="profile-top-banner">
+        <div class="profile-container">
+            <div class="profile-img-box">
+                <!-- Dynamically loaded profile image with fallback -->
+                <img id="profileImageDisplay" src="1001165695.jpg" alt="Kolapo Tunde Makanjuọla" loading="lazy" onerror="this.onerror=null; this.src='1001165695.jpg';">
+            </div>
+            <div class="profile-info">
+                <h3><i class="fa-solid fa-user-graduate"></i> <span id="profileTitleDisplay">Meet The Lead Developer</span></h3>
+                <p><strong id="profileNameDisplay">Kolapo Tunde Makanjuọla</strong> | <span id="profileSubtitleDisplay">Founder, MAKANJUỌLÁ Tech Initiatives</span></p>
+                <p id="profileDescDisplay">Undergraduate student in the Department of Linguistics and African Languages (University of Ibadan).</p>
+                <div class="profile-badges" id="profileBadgesContainer">
+                    <span class="p-badge"><i class="fa-solid fa-graduation-cap"></i> Assistant Course Rep</span>
+                    <span class="p-badge"><i class="fa-solid fa-laptop-code"></i> Frontend Web Developer</span>
+                    <span class="p-badge"><i class="fa-solid fa-bullhorn"></i> Tech & Digital Services</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PUBLIC COMMUNITY & FEATURED ADVERTISEMENTS FEED SECTION -->
+    <section class="community-feed-section">
+        <div class="community-card">
+            <h3><i class="fa-solid fa-globe" style="color: var(--accent-color);"></i> Featured Ads & Recent Community Inquiries</h3>
+            <p style="font-size: 0.85rem; color: var(--text-light); margin-bottom: 12px;">Check out featured advertisements and recent visitors reaching out to our platform:</p>
+            <div class="community-list" id="publicCustomerFeed">
+                <!-- Populated dynamically (Promo Ads + Live Visitors) -->
+            </div>
+        </div>
+    </section>
+
+    <!-- HERO SECTION -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-badge"><i class="fa-solid fa-rocket"></i> Custom Web & Tech Solutions</div>
+            <h1>Transform Your Ideas Into <span>Digital Reality</span></h1>
+            <p>Are you looking to grow your business, showcase your work, or learn in-demand tech skills? We deliver fast, smart, and reliable tech solutions built to give you real results at affordable prices!</p>
+            <div class="hero-btns">
+                <a href="#services" class="btn-primary">Explore Services <i class="fa-solid fa-arrow-down"></i></a>
+                <a href="https://wa.me/2349063074090?text=Hello%20MAKANJU%E1%BB%8CL%C3%81,%20I%20want%20to%20build%20a%20project." target="_blank" class="btn-whatsapp">
+                    <i class="fa-brands fa-whatsapp"></i> Chat on WhatsApp
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- INTERACTIVE WHATSAPP ORDER / INQUIRY BOX -->
+    <section class="order-section" id="inquiry">
+        <div class="order-card">
+            <h3><i class="fa-brands fa-whatsapp" style="color: #25d366;"></i> Send Your Request to WhatsApp</h3>
+            <p>Select a service below, choose your preferred currency, and send your message directly to us!</p>
+            
+            <form id="whatsappForm" onsubmit="sendToWhatsApp(event)">
+                <div class="form-group">
+                    <label for="clientName">Your Name / Business Name:</label>
+                    <input type="text" id="clientName" class="form-control" placeholder="e.g. Tunde Kola" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="serviceSelect">Choose Service / Option:</label>
+                    <select id="serviceSelect" class="form-control">
+                        <!-- Dynamically populated options -->
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="currencySelect"><i class="fa-solid fa-money-bill-transfer"></i> Preferred Currency / Payment Method:</label>
+                    <select id="currencySelect" class="form-control">
+                        <option value="Nigerian Naira (₦)">🇳🇬 Nigerian Naira (₦)</option>
+                        <option value="US Dollar ($)">🇺🇸 US Dollar ($) - Foreign Currency</option>
+                        <option value="British Pound (£)">🇬🇧 British Pound (£) - Foreign Currency</option>
+                        <option value="Euro (€)">🇪🇺 Euro (€) - Foreign Currency</option>
+                    </select>
+                </div>
+
+                <div class="form-group" id="customMessageBox">
+                    <label for="customMessage">Type Your Exact Requirement or Custom Message:</label>
+                    <textarea id="customMessage" class="form-control" placeholder="Describe what you want built, fixed, or tailored specifically for you..."></textarea>
+                </div>
+
+                <button type="submit" class="whatsapp-send-btn">
+                    <i class="fa-brands fa-whatsapp" style="font-size: 1.2rem;"></i> Send Message to WhatsApp
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <!-- SERVICES CATALOG -->
+    <section class="services-container" id="services">
+        <div class="section-header">
+            <h2>What We Can Do For You</h2>
+            <p>Affordable, top-tier digital services tailored for your growth</p>
+        </div>
+
+        <div class="services-grid" id="servicesGridContainer">
+            <!-- Rendered dynamically by JavaScript -->
+        </div>
+    </section>
+
+    <!-- SERVICE DETAILS POPUP MODAL -->
+    <div class="service-details-modal" id="serviceDetailsModal">
+        <div class="service-details-content">
+            <h3 id="modalServiceTitle">Service Title <button class="close-modal" onclick="closeServiceModal()">&times;</button></h3>
+            <p id="modalServiceDesc" style="font-size: 0.88rem; color: var(--text-light); margin-bottom: 10px;"></p>
+            <div style="font-size: 0.85rem; font-weight: 700; color: var(--primary-color); margin-top: 10px;"><i class="fa-solid fa-list-check"></i> What This Entails:</div>
+            <ul id="modalServiceList">
+                <!-- Details list items populated dynamically -->
+            </ul>
+            <button class="btn-primary" style="width: 100%; max-width: 100%; margin-top: 10px;" onclick="orderFromModal()">Select & Order This Service</button>
+        </div>
+    </div>
+
+    <!-- CALL TO ACTION BANNER -->
+    <section class="contact-banner">
+        <h2>Ready to Build Your Next Big Idea?</h2>
+        <p>Send a message today and let’s work together to create fast, reliable solutions!</p>
+        
+        <div class="contact-info">
+            <a href="https://wa.me/2349063074090" target="_blank" class="info-chip">
+                <i class="fa-brands fa-whatsapp" style="color: #25d366;"></i> +234 906 307 4090
+            </a>
+            <a href="mailto:tundekolapo467@gmail.com" class="info-chip">
+                <i class="fa-solid fa-envelope" style="color: #60a5fa;"></i> tundekolapo467@gmail.com
+            </a>
+        </div>
+    </section>
+
+    <!-- ADMIN SECRET ACCESS BAR -->
+    <div class="admin-trigger-bar">
+        <p>🔒 Site Management & Owner Control</p>
+        <button class="admin-trigger-btn" onclick="openAdminLogin()"><i class="fa-solid fa-lock"></i> Open Admin Editor</button>
+    </div>
+
+    <!-- ADMIN LOGIN MODAL -->
+    <div class="admin-modal" id="adminLoginModal">
+        <div class="admin-modal-content" style="max-width: 400px; text-align: center;">
+            <h3>🔒 Owner Authentication <button class="close-modal" onclick="closeModals()">&times;</button></h3>
+            <p style="font-size: 0.85rem; color: #64748b; margin-bottom: 16px;">Enter your secret passkey to edit featured ad slots, profile picture, services, and view customers.</p>
+            <input type="password" id="secretPassInput" class="form-control" placeholder="Enter secret code..." style="margin-bottom: 14px;">
+            <button class="btn-primary" style="width: 100%; max-width: 100%;" onclick="verifyAdminPass()">Unlock Editor</button>
+        </div>
+    </div>
+
+    <!-- ADMIN DASHBOARD EDITOR MODAL -->
+    <div class="admin-modal" id="adminDashboardModal">
+        <div class="admin-modal-content">
+            <h3>⚙️ MAKANJUỌLÁ Control Center <button class="close-modal" onclick="closeModals()">&times;</button></h3>
+            
+            <!-- INSTRUCTIONS ON HOW TO SHARE DIRECTLY -->
+            <div style="background: #e0f2fe; border: 1px solid #bae6fd; padding: 14px; border-radius: 8px; margin-bottom: 20px;">
+                <h4 style="font-size: 1rem; color: #0369a1; margin-bottom: 6px;"><i class="fa-solid fa-circle-info"></i> How Your Edits Show Worldwide</h4>
+                <p style="font-size: 0.82rem; color: #0284c7; line-height: 1.5;">
+                    Because this code lives on GitHub and links to Vercel, whenever you update your code here or on GitHub, Vercel updates automatically for everyone worldwide!
+                </p>
+            </div>
+
+            <!-- 3 Featured Advertisement Slots Editor -->
+            <div style="background: #fef08a; border: 1px solid #fde047; padding: 14px; border-radius: 8px; margin-bottom: 20px;">
+                <h4 style="font-size: 1rem; color: #854d0e; margin-bottom: 6px;"><i class="fa-solid fa-bullhorn"></i> Edit 3 Featured Advertisement Slots</h4>
+                <p style="font-size: 0.8rem; color: #713f12; margin-bottom: 12px;">Customize the 3 pinned advertisement badges shown on your community feed:</p>
+                <div id="adminPromoAdsList">
+                    <!-- Populated dynamically -->
+                </div>
+                <button class="btn-primary" style="padding: 6px 14px; font-size: 0.8rem; max-width: 150px; margin-top: 8px;" onclick="savePromoAds()">Save Ads</button>
+            </div>
+
+            <!-- Profile & Photo Uploader Section -->
+            <div style="background: #f1f5f9; padding: 14px; border-radius: 8px; margin-bottom: 20px;">
+                <h4 style="font-size: 1rem; color: #0f172a; margin-bottom: 10px;"><i class="fa-solid fa-image"></i> Upload Profile Picture from Phone</h4>
+                <div class="form-group" style="margin-bottom: 10px;">
+                    <label>Select Image File from Gallery:</label>
+                    <input type="file" id="phoneImageInput" class="form-control" accept="image/*" onchange="previewPhoneImage(event)">
+                </div>
+                <div class="form-group" style="margin-bottom: 10px;">
+                    <label>Your Full Name:</label>
+                    <input type="text" id="adminProfileName" class="form-control">
+                </div>
+                <div class="form-group" style="margin-bottom: 10px;">
+                    <label>Subtitle / Title:</label>
+                    <input type="text" id="adminProfileSubtitle" class="form-control">
+                </div>
+                <div class="form-group" style="margin-bottom: 10px;">
+                    <label>Bio / Description:</label>
+                    <textarea id="adminProfileDesc" class="form-control" style="min-height: 50px;"></textarea>
+                </div>
+                <button class="btn-primary" style="padding: 8px 16px; font-size: 0.85rem; max-width: 150px;" onclick="saveProfileChanges()">Save Profile</button>
+            </div>
+
+            <!-- Customer Leads / Recent Visitors Section -->
+            <div style="background: #ecfdf5; border: 1px solid #a7f3d0; padding: 14px; border-radius: 8px; margin-bottom: 20px;">
+                <h4 style="font-size: 1rem; color: #065f46; margin-bottom: 6px;"><i class="fa-solid fa-users"></i> Recent Customers & Visitors Log</h4>
+                <p style="font-size: 0.80rem; color: #047857; margin-bottom: 10px;">People who recently visited or sent inquiries to your site:</p>
+                <div id="adminCustomerLogsList" style="max-height: 150px; overflow-y: auto; background: white; padding: 8px; border-radius: 6px; font-size: 0.82rem;">
+                    <!-- Populated dynamically -->
+                </div>
+            </div>
+
+            <!-- Services Editor Section -->
+            <h4 style="font-size: 1rem; color: #0f172a; margin-bottom: 10px;"><i class="fa-solid fa-list-check"></i> Manage Services & Pricing</h4>
+            <div id="adminServiceList">
+                <!-- Populated dynamically -->
+            </div>
+
+            <div class="admin-actions">
+                <button class="btn-primary" style="flex: 1; max-width: 100%;" onclick="addNewServicePrompt()"><i class="fa-solid fa-plus"></i> Add New Service</button>
+                <button class="whatsapp-send-btn" style="flex: 1;" onclick="resetToDefaults()">Reset Defaults</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>&copy; 2026 <strong>MAKANJUỌLÁ Tech Solutions</strong>. All Rights Reserved.</p>
+    </footer>
+
+    <!-- JAVASCRIPT LOGIC WITH PERMANENT EMBEDDED MASTER STORAGE -->
+    <script>
+        // --- ADVANCED SECURITY & ANTI-COPY / ANTI-SCREEN RECORD ---
+        document.addEventListener('contextmenu', function(e) {
+            e.preventDefault();
+            alert("🔒 Content protection enabled: Right-click is disabled.");
+        });
+
+        document.addEventListener('keydown', function(e) {
+            if (
+                e.keyCode === 123 || 
+                (e.ctrlKey && e.shiftKey && (e.keyCode === 73 || e.keyCode === 74)) || 
+                (e.ctrlKey && (e.keyCode === 85 || e.keyCode === 83 || e.keyCode === 67))
+            ) {
+                e.preventDefault();
+                alert("🔒 Security restriction: Copying, saving, or inspecting source code is disabled.");
+                return false;
+            }
+        });
+
+        window.addEventListener('blur', function() {
+            document.getElementById('privacyShieldOverlay').style.display = 'flex';
+        });
+
+        window.addEventListener('focus', function() {
+            document.getElementById('privacyShieldOverlay').style.display = 'none';
+        });
+
+        // =========================================================================
+        // MASTER HARDCODED DATA (YOU CAN ALSO EDIT DIRECTLY HERE IN THE CODE)
+        // =========================================================================
+        const masterProfile = {
+            image: "1001165695.jpg",
+            name: "Kolapo Tunde Makanjuọla",
+            subtitle: "Founder, MAKANJUỌLÁ Tech Initiatives",
+            desc: "Undergraduate student in the Department of Linguistics and African Languages (University of Ibadan)."
+        };
+
+        const masterPromoAds = [
+            { name: "Adewale Tech", text: "Promoted Business Website" },
+            { name: "Oluwaseun Digital", text: "Promoted Mobile-First Site" },
+            { name: "Ibadan Scholars Hub", text: "Promoted Student Portal" }
+        ];
+
+        const masterServices = [
+            {
+                id: 1,
+                title: "Business Owner Websites",
+                price: "₦5,000",
+                icon: "fa-solid fa-briefcase",
+                image: "",
+                desc: "Custom scalable websites tailored for small, medium, or enterprise businesses.",
+                details: "Complete multi-page business website setup.\nProduct/service showcase & pricing tables.\nDirect WhatsApp & email customer contact integration.\nSEO-optimized layout to rank on Google."
+            },
+            {
+                id: 2,
+                title: "Mobile-First Websites",
+                price: "₦5,000",
+                icon: "fa-solid fa-mobile-screen-button",
+                image: "",
+                desc: "Responsive, ultra-fast web interfaces optimized specifically for smartphone users.",
+                details: "Designed primarily for mobile phone screen views.\nUltra-fast loading speeds on mobile networks.\nTouch-friendly navigation buttons and menus.\nTested across multiple Android and iOS devices."
+            },
+            {
+                id: 3,
+                title: "Interactive Study & Quiz Apps",
+                price: "₦5,000",
+                icon: "fa-solid fa-graduation-cap",
+                image: "",
+                desc: "Engaging learning platforms with interactive quizzes, scoring, and practice modules.",
+                details: "Custom quiz questions and multiple-choice options.\nReal-time score calculation and answer explanations.\nTimer features for timed practice tests.\nIdeal for students, tutors, and learning communities."
+            },
+            {
+                id: 4,
+                title: "Personal Portfolio Sites",
+                price: "₦5,000",
+                icon: "fa-solid fa-id-card",
+                image: "",
+                desc: "Showcase your projects, achievements, and career background to potential clients.",
+                details: "Professional bio and personal introduction section.\nProject gallery showcasing your past work or portfolio.\nSkills, awards, and educational background display.\nDirect contact form or WhatsApp connection button."
+            },
+            {
+                id: 5,
+                title: "Coding & Tech Tutoring",
+                price: "₦5,000 / mo",
+                icon: "fa-solid fa-laptop-code",
+                image: "",
+                desc: "Practical, step-by-step tutoring in modern frontend development and programming.",
+                details: "One-on-one sessions in HTML, CSS, and JavaScript.\nPractical coding practice using mobile/desktop editors.\nGuidance on building real-world web projects from scratch.\nBeginner-friendly explanations and mentorship."
+            },
+            {
+                id: 6,
+                title: "Bilingual Web Design",
+                price: "₦5,000",
+                icon: "fa-solid fa-language",
+                image: "",
+                desc: "Multi-language websites tailored to reach diverse regional or international audiences.",
+                details: "Website content built in two languages (e.g., English & Indigenous).\nEasy language toggle button for users.\nCulturally tailored interface layout and typography.\nGreat for linguistic projects and regional businesses."
+            },
+            {
+                id: 7,
+                title: "Student & Club Portals",
+                price: "₦5,000",
+                icon: "fa-solid fa-users-rectangle",
+                image: "",
+                desc: "Centralized information hubs, announcement channels, and departmental portals.",
+                details: "Departmental or student association information hubs.\nAnnouncement boards and timetable display sections.\nDirect links to WhatsApp community groups and resources.\nEasy management for course reps and student leaders."
+            },
+            {
+                id: 8,
+                title: "Digital RSVP & Event Forms",
+                price: "₦5,000",
+                icon: "fa-solid fa-calendar-check",
+                image: "",
+                desc: "Seamless online invitation cards and event registration forms for gatherings.",
+                details: "Custom digital invitation pages for ceremonies and events.\nGuest list collection forms that forward details to WhatsApp.\nCountdown timers and event schedule details.\nClean, elegant mobile card layouts."
+            },
+            {
+                id: 9,
+                title: "Language & Text Tools",
+                price: "₦5,000",
+                icon: "fa-solid fa-spell-check",
+                image: "",
+                desc: "Custom web scripts for language analysis, text conversion, and linguistic research.",
+                details: "Custom JavaScript utilities for text analysis and formatting.\nPhonetic symbol converters or lexical sorters.\nTailored tools for linguistics students and researchers.\nInteractive browser-based interfaces."
+            },
+            {
+                id: 10,
+                title: "Website Bug Fixes & Speed-Ups",
+                price: "₦5,000",
+                icon: "fa-solid fa-bug-slash",
+                image: "",
+                desc: "Debug broken code, optimize database load times, and improve overall website speed.",
+                details: "Comprehensive debugging of HTML, CSS, and JS errors.\nMobile responsiveness layout corrections.\nImage compression and speed optimization.\nQuick turnaround time for urgent fixes."
+            },
+            {
+                id: 11,
+                title: "Interactive Web CVs & Resumes",
+                price: "₦5,000",
+                icon: "fa-solid fa-file-invoice",
+                image: "",
+                desc: "Replace flat PDF resumes with interactive, clickable web CVs that impress recruiters.",
+                details: "Modern web-based resume design accessible via a unique link.\nClickable project links, certifications, and contact buttons.\nClean, recruiter-friendly layout.\nEasy to share on LinkedIn and job applications."
+            }
+        ];
+
+        let temporaryUploadedImage = "";
+        let selectedServiceForModal = "";
+
+        // --- DATA MANAGEMENT FUNCTIONS ---
+        function getStoredProfile() {
+            const data = localStorage.getItem('makanjuola_profile_v2');
+            if (data) {
+                try { return JSON.parse(data); } catch(e) {}
+            }
+            return masterProfile;
+        }
+
+        function renderProfile() {
+            const p = getStoredProfile();
+            const imgElement = document.getElementById('profileImageDisplay');
+            imgElement.src = p.image || masterProfile.image;
+            document.getElementById('profileNameDisplay').textContent = p.name || masterProfile.name;
+            document.getElementById('profileSubtitleDisplay').textContent = p.subtitle || masterProfile.subtitle;
+            document.getElementById('profileDescDisplay').textContent = p.desc || masterProfile.desc;
+        }
+
+        function previewPhoneImage(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const img = new Image();
+                    img.src = e.target.result;
+                    img.onload = function() {
+                        const canvas = document.createElement('canvas');
+                        const MAX_WIDTH = 350;
+                        const MAX_HEIGHT = 350;
+                        let width = img.width;
+                        let height = img.height;
+
+                        if (width > height) {
+                            if (width > MAX_WIDTH) {
+                                height *= MAX_WIDTH / width;
+                                width = MAX_WIDTH;
+                            }
+                        } else {
+                            if (height > MAX_HEIGHT) {
+                                width *= MAX_HEIGHT / height;
+                                height = MAX_HEIGHT;
+                            }
+                        }
+
+                        canvas.width = width;
+                        canvas.height = height;
+                        const ctx = canvas.getContext('2d');
+                        ctx.drawImage(img, 0, 0, width, height);
+                        temporaryUploadedImage = canvas.toDataURL('image/jpeg', 0.65);
+                        document.getElementById('profileImageDisplay').src = temporaryUploadedImage;
+                    }
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+
+        function getStoredPromoAds() {
+            const data = localStorage.getItem('makanjuola_promos_v2');
+            if (data) {
+                try { return JSON.parse(data); } catch(e) {}
+            }
+            return masterPromoAds;
+        }
+
+        function savePromoAds() {
+            let promos = [];
+            for (let i = 0; i < 3; i++) {
+                promos.push({
+                    name: document.getElementById(`promo-name-${i}`).value.trim(),
+                    text: document.getElementById(`promo-text-${i}`).value.trim()
+                });
+            }
+            localStorage.setItem('makanjuola_promos_v2', JSON.stringify(promos));
+            renderPublicCommunityFeed();
+            alert("Featured advertisements updated successfully!");
+        }
+
+        function getStoredServices() {
+            const data = localStorage.getItem('makanjuola_services_v2');
+            if (data) {
+                try { return JSON.parse(data); } catch(e) {}
+            }
+            return masterServices;
+        }
+
+        function saveServices(services) {
+            localStorage.setItem('makanjuola_services_v2', JSON.stringify(services));
+            renderServices();
+            populateSelectDropdown();
+        }
+
+        function renderServices() {
+            const grid = document.getElementById('servicesGridContainer');
+            const services = getStoredServices();
+            grid.innerHTML = '';
+
+            services.forEach((service, index) => {
+                const card = document.createElement('div');
+                card.className = 'service-card';
+                
+                let imgHtml = '';
+                if (service.image && service.image.trim() !== '') {
+                    imgHtml = `
+                        <div class="service-img-box">
+                            <img src="${service.image}" alt="${service.title}" loading="lazy" onerror="this.parentElement.style.display='none';">
+                        </div>
+                    `;
+                }
+
+                card.innerHTML = `
+                    <div>
+                        ${imgHtml}
+                        <div class="service-header-row">
+                            <div class="service-icon"><i class="${service.icon}"></i></div>
+                            <span class="price-tag">${service.price}</span>
+                        </div>
+                        <h3>${service.title}</h3>
+                        <p>${service.desc}</p>
+                        
+                        <button class="details-modal-btn" onclick="openServiceModal('${service.title.replace(/'/g, "\\'")}', '${service.desc.replace(/'/g, "\\'")}', \`${service.details}\`)">
+                            <i class="fa-solid fa-circle-info"></i> What This Entails (Click Inside)
+                        </button>
+                    </div>
+                    <button class="service-link" onclick="selectService('${service.title.replace(/'/g, "\\'")}')">Select & Order <i class="fa-solid fa-arrow-up"></i></button>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        // --- SERVICE DETAILS POPUP MODAL FUNCTIONS ---
+        function openServiceModal(title, desc, details) {
+            selectedServiceForModal = title;
+            document.getElementById('modalServiceTitle').innerHTML = `${title} <button class="close-modal" onclick="closeServiceModal()">&times;</button>`;
+            document.getElementById('modalServiceDesc').textContent = desc;
+            
+            const listContainer = document.getElementById('modalServiceList');
+            listContainer.innerHTML = '';
+            details.split('\n').forEach(line => {
+                if(line.trim() !== '') {
+                    const li = document.createElement('li');
+                    li.textContent = line;
+                    listContainer.appendChild(li);
+                }
+            });
+
+            document.getElementById('serviceDetailsModal').style.display = 'flex';
+        }
+
+        function closeServiceModal() {
+            document.getElementById('serviceDetailsModal').style.display = 'none';
+        }
+
+        function orderFromModal() {
+            closeServiceModal();
+            selectService(selectedServiceForModal);
+        }
+
+        function populateSelectDropdown() {
+            const select = document.getElementById('serviceSelect');
+            const services = getStoredServices();
+            select.innerHTML = '';
+
+            services.forEach((s, idx) => {
+                const opt = document.createElement('option');
+                opt.value = s.title;
+                opt.textContent = `${idx + 1}. ${s.title} (${s.price})`;
+                select.appendChild(opt);
+            });
+
+            const customOpt = document.createElement('option');
+            customOpt.value = "Custom Project / Specific Request";
+            customOpt.textContent = "✨ Other / Custom Request (Type your message below)";
+            select.appendChild(customOpt);
+        }
+
+        function selectService(serviceName) {
+            const select = document.getElementById('serviceSelect');
+            for (let i = 0; i < select.options.length; i++) {
+                if (select.options[i].value === serviceName) {
+                    select.selectedIndex = i;
+                    break;
+                }
+            }
+            document.getElementById('inquiry').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // --- CUSTOMER LOGS & COMMUNITY FEED SYSTEM ---
+        function getStoredCustomers() {
+            const data = localStorage.getItem('makanjuola_customers_v2');
+            if (data) {
+                try { return JSON.parse(data); } catch(e) {}
+            }
+            return [
+                { name: "Adebayo S.", service: "Business Owner Websites", time: "Just now" },
+                { name: "Fatima K.", service: "Mobile-First Websites", time: "5 mins ago" },
+                { name: "Chinedu O.", service: "Interactive Study App", time: "12 mins ago" }
+            ];
+        }
+
+        function logCustomerActivity(name, service) {
+            let customers = getStoredCustomers();
+            customers.unshift({ name: name, service: service, time: "Just now" });
+            if (customers.length > 10) customers.pop();
+            localStorage.setItem('makanjuola_customers_v2', JSON.stringify(customers));
+            renderPublicCommunityFeed();
+        }
+
+        function renderPublicCommunityFeed() {
+            const feedContainer = document.getElementById('publicCustomerFeed');
+            const promos = getStoredPromoAds();
+            const customers = getStoredCustomers();
+            feedContainer.innerHTML = '';
+
+            promos.forEach(p => {
+                const badge = document.createElement('div');
+                badge.className = 'promo-badge-item';
+                badge.innerHTML = `<i class="fa-solid fa-bullhorn" style="color: #059669;"></i> <strong>${p.name}</strong> — ${p.text} <span style="font-size: 0.7rem; background: #059669; color: white; padding: 2px 6px; border-radius: 10px; margin-left: 4px;">Ad</span>`;
+                feedContainer.appendChild(badge);
+            });
+
+            customers.forEach(c => {
+                const badge = document.createElement('div');
+                badge.className = 'community-badge-item';
+                badge.innerHTML = `<i class="fa-solid fa-circle-check" style="color: #22c55e;"></i> <strong>${c.name}</strong> inquired about ${c.service}`;
+                feedContainer.appendChild(badge);
+            });
+        }
+
+        function initLiveTicker() {
+            const customers = getStoredCustomers();
+            const ticker = document.getElementById('liveTickerText');
+            let idx = 0;
+
+            function updateTicker() {
+                if (customers.length === 0) return;
+                const c = customers[idx];
+                ticker.innerHTML = `🔥 <strong>${c.name}</strong> recently requested <em>${c.service}</em> (${c.time}) — Join others reaching out today!`;
+                idx = (idx + 1) % customers.length;
+            }
+
+            updateTicker();
+            setInterval(updateTicker, 5000);
+        }
+
+        // Send to WhatsApp & Log Customer
+        function sendToWhatsApp(event) {
+            event.preventDefault();
+            const clientName = document.getElementById('clientName').value.trim();
+            const service = document.getElementById('serviceSelect').value;
+            const currency = document.getElementById('currencySelect').value;
+            const customDetails = document.getElementById('customMessage').value.trim();
+            
+            if (clientName.length < 2) {
+                alert("Please enter a valid name.");
+                return;
+            }
+
+            logCustomerActivity(clientName, service);
+
+            let message = `Hello MAKANJUỌLÁ, I would like to place an order / inquiry:\n\n`;
+            message += `👤 *Name:* ${clientName}\n`;
+            message += `🛠️ *Selected Service:* ${service}\n`;
+            message += `💱 *Preferred Currency:* ${currency}\n`;
+            
+            if (customDetails) {
+                message += `📝 *Client's Custom Message:* ${customDetails}\n`;
+            }
+            message += `\nPlease let me know the details and next steps!`;
+            
+            const vendorPhone = "2349063074090";
+            const whatsappUrl = `https://api.whatsapp.com/send?phone=${vendorPhone}&text=${encodeURIComponent(message)}`;
+            window.open(whatsappUrl, '_blank');
+        }
+
+        // --- ADMIN MODAL & EDITING LOGIC ---
+        const SECRET_PASSCODE = "MAKANJUOLA2026";
+
+        function openAdminLogin() {
+            document.getElementById('adminLoginModal').style.display = 'flex';
+        }
+
+        function closeModals() {
+            document.getElementById('adminLoginModal').style.display = 'none';
+            document.getElementById('adminDashboardModal').style.display = 'none';
+        }
+
+        function verifyAdminPass() {
+            const val = document.getElementById('secretPassInput').value.trim();
+            if (val === SECRET_PASSCODE) {
+                document.getElementById('secretPassInput').value = '';
+                closeModals();
+                openAdminDashboard();
+            } else {
+                alert("Incorrect secret code! Access denied.");
+            }
+        }
+
+        function openAdminDashboard() {
+            const p = getStoredProfile();
+            document.getElementById('adminProfileName').value = p.name;
+            document.getElementById('adminProfileSubtitle').value = p.subtitle;
+            document.getElementById('adminProfileDesc').value = p.desc;
+            temporaryUploadedImage = p.image;
+
+            renderAdminPromoAdsInputs();
+            renderAdminList();
+            renderCustomerLogs();
+            document.getElementById('adminDashboardModal').style.display = 'flex';
+        }
+
+        function renderAdminPromoAdsInputs() {
+            const container = document.getElementById('adminPromoAdsList');
+            const promos = getStoredPromoAds();
+            container.innerHTML = '';
+            promos.forEach((ad, i) => {
+                container.innerHTML += `
+                    <div style="display: flex; gap: 8px; margin-bottom: 8px;">
+                        <input type="text" id="promo-name-${i}" class="form-control" value="${ad.name}" placeholder="Ad ${i+1} Name" style="flex: 1;">
+                        <input type="text" id="promo-text-${i}" class="form-control" value="${ad.text}" placeholder="Ad ${i+1} Description" style="flex: 2;">
+                    </div>
+                `;
+            });
+        }
+
+        function saveProfileChanges() {
+            const currentProfile = getStoredProfile();
+            const newProfile = {
+                image: temporaryUploadedImage || currentProfile.image || masterProfile.image,
+                name: document.getElementById('adminProfileName').value.trim(),
+                subtitle: document.getElementById('adminProfileSubtitle').value.trim(),
+                desc: document.getElementById('adminProfileDesc').value.trim()
+            };
+            localStorage.setItem('makanjuola_profile_v2', JSON.stringify(newProfile));
+            renderProfile();
+            alert("Profile and picture updated permanently! Anyone opening your site file will see these updates.");
+        }
+
+        function renderCustomerLogs() {
+            const container = document.getElementById('adminCustomerLogsList');
+            const customers = getStoredCustomers();
+            container.innerHTML = '';
+            customers.forEach(c => {
+                const div = document.createElement('div');
+                div.style.marginBottom = '4px';
+                div.innerHTML = `👤 <strong>${c.name}</strong> ordered/inquired about <em>${c.service}</em> <span style="color: #64748b; font-size: 0.75rem;">(${c.time})</span>`;
+                container.appendChild(div);
+            });
+        }
+
+        function renderAdminList() {
+            const container = document.getElementById('adminServiceList');
+            const services = getStoredServices();
+            container.innerHTML = '';
+
+            services.forEach((s, idx) => {
+                const row = document.createElement('div');
+                row.className = 'admin-item-row';
+                row.innerHTML = `
+                    <div style="display: flex; gap: 8px; margin-bottom: 8px;">
+                        <input type="text" id="admin-title-${idx}" class="form-control" value="${s.title}" placeholder="Service Title" style="flex: 2;">
+                        <input type="text" id="admin-price-${idx}" class="form-control" value="${s.price}" placeholder="Price (e.g. ₦5,000)" style="flex: 1;">
+                        <input type="text" id="admin-icon-${idx}" class="form-control" value="${s.icon}" placeholder="Icon class" style="flex: 1;">
+                    </div>
+                    <div style="margin-bottom: 8px;">
+                        <label style="font-size: 0.78rem; font-weight: 700; color: #475569;"><i class="fa-solid fa-image"></i> Select Order/Service Image from Phone Gallery:</label>
+                        <input type="file" id="admin-file-input-${idx}" class="form-control" accept="image/*" onchange="previewServiceImage(event, ${idx})" style="margin-bottom: 4px;">
+                        <input type="text" id="admin-image-${idx}" class="form-control" value="${s.image || ''}" placeholder="Or paste image link here...">
+                    </div>
+                    <textarea id="admin-desc-${idx}" class="form-control" placeholder="Short description" style="min-height: 50px;">${s.desc}</textarea>
+                    <textarea id="admin-details-${idx}" class="form-control" placeholder="Details (each line on a new row)" style="min-height: 70px;">${s.details}</textarea>
+                    <div style="display: flex; justify-content: flex-end; gap: 8px;">
+                        <button class="btn-primary" style="padding: 6px 14px; font-size: 0.8rem; max-width: 100px;" onclick="saveSingleService(${idx})">Save</button>
+                        <button class="whatsapp-send-btn" style="background-color: #dc2626; padding: 6px 14px; font-size: 0.8rem; max-width: 100px;" onclick="deleteService(${idx})">Delete</button>
+                    </div>
+                `;
+                container.appendChild(row);
+            });
+        }
+
+        // Convert phone gallery file upload into compressed base64 for service/order card image
+        function previewServiceImage(event, idx) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const img = new Image();
+                    img.src = e.target.result;
+                    img.onload = function() {
+                        const canvas = document.createElement('canvas');
+                        const MAX_WIDTH = 350;
+                        const MAX_HEIGHT = 350;
+                        let width = img.width;
+                        let height = img.height;
+
+                        if (width > height) {
+                            if (width > MAX_WIDTH) {
+                                height *= MAX_WIDTH / width;
+                                width = MAX_WIDTH;
+                            }
+                        } else {
+                            if (height > MAX_HEIGHT) {
+                                width *= MAX_HEIGHT / height;
+                                height = MAX_HEIGHT;
+                            }
+                        }
+
+                        canvas.width = width;
+                        canvas.height = height;
+                        const ctx = canvas.getContext('2d');
+                        ctx.drawImage(img, 0, 0, width, height);
+                        const compressedDataUrl = canvas.toDataURL('image/jpeg', 0.65);
+                        document.getElementById(`admin-image-${idx}`).value = compressedDataUrl;
+                    }
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+
+        function saveSingleService(idx) {
+            let services = getStoredServices();
+            services[idx].title = document.getElementById(`admin-title-${idx}`).value;
+            services[idx].price = document.getElementById(`admin-price-${idx}`).value;
+            services[idx].icon = document.getElementById(`admin-icon-${idx}`).value;
+            services[idx].image = document.getElementById(`admin-image-${idx}`).value.trim();
+            services[idx].desc = document.getElementById(`admin-desc-${idx}`).value;
+            services[idx].details = document.getElementById(`admin-details-${idx}`).value;
+            
+            saveServices(services);
+            alert("Service, price, and image permanently updated!");
+            renderAdminList();
+        }
+
+        function deleteService(idx) {
+            if (confirm("Are you sure you want to delete this service?")) {
+                let services = getStoredServices();
+                services.splice(idx, 1);
+                saveServices(services);
+                renderAdminList();
+            }
+        }
+
+        function addNewServicePrompt() {
+            let services = getStoredServices();
+            services.push({
+                id: Date.now(),
+                title: "New Custom Service",
+                price: "₦5,000",
+                icon: "fa-solid fa-star",
+                image: "",
+                desc: "Describe what this new service offers to your clients.",
+                details: "Detail 1 feature\nDetail 2 feature"
+            });
+            saveServices(services);
+            renderAdminList();
+        }
+
+        function resetToDefaults() {
+            if (confirm("Reset profile, promo ads, and services back to default?")) {
+                localStorage.removeItem('makanjuola_services_v2');
+                localStorage.removeItem('makanjuola_profile_v2');
+                localStorage.removeItem('makanjuola_customers_v2');
+                localStorage.removeItem('makanjuola_promos_v2');
+                renderProfile();
+                renderServices();
+                populateSelectDropdown();
+                renderPublicCommunityFeed();
+                renderAdminList();
+                alert("Restored to defaults!");
+            }
+        }
+
+        // Initial setup on page load
+        window.onload = function() {
+            renderProfile();
+            renderServices();
+            populateSelectDropdown();
+            renderPublicCommunityFeed();
+            initLiveTicker();
+        };
+    </script>
+</body>
+</html>
